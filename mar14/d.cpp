@@ -17,6 +17,7 @@ using namespace std;
 class Solution {
   const int INF = 1e9 + 5;
   vector<vector<int>> find_next(const vector<int>& colors) {
+    cout << colors;
     const int n = colors.size();
     vector<vector<int>> nxt(n, vector<int>(4));
     for (int i = n - 1; i >= 0; i--) {
