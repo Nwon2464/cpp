@@ -7,54 +7,32 @@ var shortestPathBinaryMatrix = function (grid) {
   const W = grid[0].length;
 
   if (grid[0][0] == 1 || grid[H - 1][W - 1] == 1) return -1;
+  let q = []
+  const moves = [[1, 0], [0, 1]];
+  let dp = new Array(H).fill(0).map(e => new Array(W).fill(0))
+  dp[0][0] = 1;
+  for (let row = 0; row < H; row++) {
+    for (let col = 0; col < W; col++) {
 
-  const moves = [[1, 1], [0, 1], [1, 0], [-1, 1], [-1, 0], [1, -1], [0, -1], [-1, -1]];
-  let q = [];
+      for (let [x, y] of moves) {
+        let r2 = x + row;
+        let c2 = y + col;
+        if (r2 < H && c2 < W && grid[r2][c2] == ".") {
+          dp[r2][c2] += dp[row][col];
 
-  q.push([0, 0]);
-  grid[0][0] = 1;
-  let i = 1;
-  while (q.length != 0) {
+          // grid[a][b] == "#";
+        }
 
+        //[0,1], [1,0]
+        //[0,2],[1,1]
 
-
-    let [x, y] = q.shift();
-
-    let dist = grid[x][y];
-    console.log(grid, "------------", ++i);
-
-    if (x == H - 1 && y == W - 1) return dist;
-    for (let [a, b] of moves) {
-      let dirX = a + x;
-      let dirY = b + y;
-
-      if (dirX >= 0 && dirY >= 0 && dirX < H && dirY < W && grid[dirX][dirY] == 0) {
-        grid[dirX][dirY] = dist + 1;
-        q.push([dirX, dirY]);
       }
-
     }
   }
 
-  return -1;
-  // return -1;
-
+  console.log(dp);
 
 };
-shortestPathBinaryMatrix([
-  [0, 0, 0, 0, 1, 1, 0],
-  [0, 1, 1, 0, 0, 0, 0],
-  [0, 1, 0, 1, 1, 1, 1],
-  [1, 0, 0, 1, 1, 0, 0],
-  [0, 1, 0, 0, 0, 1, 0]]);
-/*
-  *
-[[1,0,0]
- [1,1,0]
- [1,1,0]]
-      *
 
- [0,0,0]
- [0,1,0]
- [0,0,0]
- */
+shortestPathBinaryMatrix([[".", ".", ".", "#"], [".", "#", ".", "."], [".", ".", ".", "."]]);
+
