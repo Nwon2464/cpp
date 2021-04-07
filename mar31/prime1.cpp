@@ -35,11 +35,47 @@ sim dor(const c&) { ris; }
 //End of debug template
 #define FOR(i,n) for (int i = 0; i < (n); ++i)
 
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
-
+#define sfl(a)           scanf("%lld",&a)
 using ll = long long;
 
+//prime check
+bool isPrime(int x) {
+    for (int d = 2; d * d <= x; d++) {
+        if (x % d == 0)
+            return false;
+    }
+    return true;
+}
+
+//prime factorization
+void trial_division1(long long n,vector<long long> & factorization) {
+	for (long long d = 2; d * d <= n; d++) {
+		while (n % d == 0) {
+			factorization.push_back(d);
+			n /= d;
+		}
+	}
+	if (n > 1){
+		factorization.push_back(n);
+	}
+//return factorization;
+}
 int main() {
+	long long n;
+	
+	  while(sfl(n) && n){
+		vector<long long> factorization;
+		map<long long,int> mp;
+		trial_division1(n,factorization);
+		int sz = factorization.size();
+		for(int i =0;  i< sz;i++){
+			mp[factorization[i]]++;
+		}
+		
+		for(auto x : mp){
+			cout << x.first <<"^"<< x.second << " ";
+		}
+		cout << "\n";		
+	}
 	return 0;
 }

@@ -28,27 +28,26 @@ sim dor(const c&) { ris; }
 #endif
 };
 #define imie(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
-
-using ll = long long;
-const int INF = 1e9+5;
-int n,k;
-
-//dp contest frog2
-int main() {
-	cin >> n >> k;
-	vector<int> arr(n);
-	vector<int> dp(n,INF);
-	for(int i= 0; i< n;i++){
-		cin >> arr[i];
-	}
-	dp[0] = 0;
-	for(int i =0; i <n;i++){
-		for(int j=i+1; j<= i+k;j++){
-			if(j <n){
-				dp[j] = min(dp[j],dp[i] + abs(arr[i] - arr[j]));
-			}
+//codeforce B- Lecture Sleep
+int n,k,p,a[2005],b[2005];
+void solve(){
+	sort(a,a+n);sort(b,b+k);
+	int ans=2*0x3f3f3f3f;
+	for(int i =0; i < k-n; i++){
+		int sum = 0;
+		for(int j = 0; j <n ;j++){
+			sum = max(sum,abs(a[j]- b[i+j]) + abs(b[i+j] - p));
 		}
+		ans = min(sum,ans);
 	}
-	cout << dp[n-1] ;
-	
+	cout<<ans<<endl;
+}
+
+int main(){
+	cin>>n>>k>>p;
+	for(int i=0;i<n;i++)
+		cin>>a[i];
+	for(int i=0;i<k;i++)
+		cin>>b[i];
+	solve();
 }

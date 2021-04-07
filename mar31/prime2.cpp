@@ -35,11 +35,47 @@ sim dor(const c&) { ris; }
 //End of debug template
 #define FOR(i,n) for (int i = 0; i < (n); ++i)
 
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
 
 using ll = long long;
 
-int main() {
+
+vector<pair<long long, int> > pf;
+vector<int> pr;
+
+void seive(ll n){
+	vector<ll> lp(n+1);
+
+	for (int i=2; i<=n; ++i) {
+	if (lp[i] == 0) {
+		lp[i] = i;
+		pr.push_back (i);
+	}
+	for (int j=0; j<(int)pr.size() && pr[j]<=lp[i] && i*pr[j]<=n; ++j)
+		lp[i * pr[j]] = pr[j];
+	}
+	//return pr;
+}
+
+vector<pair<long long, int> > optimized_trial_division(long long n) {
+    for (auto p : pr) {
+        if (p*p > n) break;
+        int count = 0;
+        while (n%p==0) ++count, n/=p;
+        if (count) pf.push_back({p, count});
+    }
+    if (n>1) pf.push_back({n, 1});
+    return pf;
+}
+int main(){
+	int N;
+	cin >> N;
+	//to precompute all prime numbers with the Sieve of Eratosthenes until n−−√ 
+	seive(N);
+	//calculate fatorization
+	optimized_trial_division(N);
+	cout << sqrt(81);
+	debug() << imie(pr) imie(pf);
 	return 0;
 }
+
+

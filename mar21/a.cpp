@@ -32,6 +32,7 @@ sim dor(const c&) { ris; }
 using ll = long long;
 const int INF = 1e9+5;
 int n;
+//dp contest frog1
 int main() {
 	cin >> n;
 	vector<int> arr(n);

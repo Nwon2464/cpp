@@ -35,11 +35,30 @@ sim dor(const c&) { ris; }
 //End of debug template
 #define FOR(i,n) for (int i = 0; i < (n); ++i)
 
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
 
 using ll = long long;
-
-int main() {
+ll gcd(ll x, ll y) {
+   
+	return y == 0 ? x : gcd(y, x % y);
+}
+ 
+ll getSum(ll x) {
+	ll s = 0;
+	while(x > 0) {
+		s += x % 10;
+		x /= 10;
+	}
+	return s;
+}
+int main(){
+	//int ans = gcd(gcd(gcd(a,b),c),d);
+	int t;
+	cin >> t;
+	while(t--) {
+		ll x;
+		scanf("%lld", &x);
+		while(gcd(x, getSum(x)) == 1) x++;
+		printf("%lld\n", x);
+	}
 	return 0;
 }

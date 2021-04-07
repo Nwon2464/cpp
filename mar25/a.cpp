@@ -33,13 +33,24 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
-#define FOR(i,n) for (int i = 0; i < (n); ++i)
-
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
-
+ 
 using ll = long long;
-
+//Codeforces Round #663 (Div. 2) A-suborrays
+//every permutation is good ==> n = 3 [1,2,3], [3,2,1] ,[3,1,2] etc any permutation is answer 
+//tip : iota == store increasing sequence 
+//iota(first,last,val) val means starting value
 int main() {
+	int t;
+	cin >> t;
+	while(t--){
+		int n;
+		cin >> n;
+		vector<int> a(n);
+		iota(a.begin(),a.end(),1);
+		for(int i=0;i<n;i++) cout << a[i] << " ";
+	
+		cout << endl;
+	}
+	
 	return 0;
 }

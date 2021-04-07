@@ -33,13 +33,32 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
-#define FOR(i,n) for (int i = 0; i < (n); ++i)
-
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
-
+//Codeforces Round #481 (Div. 3) A-Remove Duplicates
+//tip : use visted array to check to see if elements are duplicate
 using ll = long long;
-
+int vis[1005] ={0};
 int main() {
+	int n;
+	cin >> n;
+	vector<int>  a(n);
+	for(int i =0;i<n;i++){
+		cin >> a[i];
+	}
+	vector<int> ans;
+	for(int i=n-1;i>=0;i--){
+		if(vis[a[i]] == 0){
+			vis[a[i]] = 1;
+			ans.push_back(a[i]);
+		}
+	}
+	reverse(ans.begin(),ans.end());
+	cout << ans.size() << "\n";
+	
+	for(auto it : ans){
+		cout << it << " ";
+	}
+	
+		
+		
 	return 0;
 }

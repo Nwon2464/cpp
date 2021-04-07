@@ -30,25 +30,46 @@ sim dor(const c&) { ris; }
 #define imie(...) " [" << #__VA_ARGS__ ": " << (__VA_ARGS__) << "] "
 
 using ll = long long;
-const int INF = 1e9+5;
-int n,k;
-
-//dp contest frog2
+// codeforce - B lecture Sleep
 int main() {
-	cin >> n >> k;
-	vector<int> arr(n);
-	vector<int> dp(n,INF);
-	for(int i= 0; i< n;i++){
-		cin >> arr[i];
-	}
-	dp[0] = 0;
-	for(int i =0; i <n;i++){
-		for(int j=i+1; j<= i+k;j++){
-			if(j <n){
-				dp[j] = min(dp[j],dp[i] + abs(arr[i] - arr[j]));
+	
+		int n,k,p;
+		cin >> n >> k >> p;
+		int arr[n],brr[k];
+		
+		for(int i =0; i < n; i++) cin >>arr[i];
+		sort(arr,arr+n);
+		for(int i =0; i < k; i++) cin>> brr[i];
+		sort(brr,brr+k);
+		
+		int dp[k+1][n+1];
+		
+		const int INF = 1e9+5;
+		for(int i =0; i <=k;i++){
+			for(int j=0; j <=n;j++){
+				dp[i][j] = INF;
 			}
 		}
-	}
-	cout << dp[n-1] ;
-	
+		dp[0][0] = 0;
+		
+		// n denotes number of people
+		// k deonotes number of keys
+		for(int i =0; i <k;i++){ 
+			for(int j=0; j <=n;j++){
+			
+				dp[i+1][j] = min(dp[i+1][j],dp[i][j]);
+				if(j<n){
+					dp[i+1][j+1] = min(dp[i+1][j+1],max(dp[i][j],abs(arr[j]-brr[i])+abs(brr[i] -p)));
+				}
+				
+			}
+		}
+		
+		dp[i+1][j] = min(dp[i+1][j],dp[i][j])
+			
+		cout << dp[k][n];
+		
+		
 }
+
+

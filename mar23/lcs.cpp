@@ -33,13 +33,45 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
-#define FOR(i,n) for (int i = 0; i < (n); ++i)
-
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
+ 
 
 using ll = long long;
-
+string s, t;
+//[[0,0,0,0,0,0]
+//,[0,1,1,1,1,1]
+//,[0,1,1,1,2,2]
+//,[0,1,1,2,2,2]
+//,[0,1,2,2,2,3]]
 int main() {
-	return 0;
+	cin >> s >> t;
+	vector<vector<int>> dp(s.length()+1,vector<int>(t.length()+1,0));
+	for(int i =0; i < (int)s.length();i++){
+		for(int j=0; j < (int)t.length();j++){
+			if(s[i] == t[j]){
+				dp[i+1][j+1] = max(dp[i+1][j+1], dp[i][j]+1);
+			}else{
+				dp[i+1][j+1] = max(dp[i+1][j], dp[i][j+1]);			
+			}
+		}
+	}
+	cout << dp[s.size()][t.size()];
+	int i = s.size(),j=t.size();
+	string ans;
+	while(i && j){
+		if(s[i-1] == t[j-1]){
+			ans = s[i-1] + ans;
+			--i;
+			--j;
+			continue;
+		}
+		if(dp[i-1][j]>dp[i][j-1]){
+			--i;
+		}
+		else{
+			--j;
+		}
+	}
+	debug() << dp;
+	//cout << ans << "\n" ;
+      
 }

@@ -33,13 +33,52 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
-#define FOR(i,n) for (int i = 0; i < (n); ++i)
-
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
+ 
 
 using ll = long long;
+int n , W;
+const ll INF = 1e18L + 5;
+void max_self(ll &a,ll b){
+	a = max(a,b);
+}
 
+void min_self(ll &a,ll b){
+	a = min(a,b);
+}
 int main() {
-	return 0;
+	
+	cin >> n >> W;
+	vector<int> w(n);
+	vector<int> v(n);
+	for(int i =0;i< n;i++){
+			cin >> w[i] >> v[i] ;
+	}
+	int sum = 0;
+	for(int x : v){
+		sum += x;
+	}
+	
+	vector<ll> dp(sum + 1,INF);
+	dp[0] = 0;
+	//int a[n],b[n];
+	for(int i=0;i<n;++i){
+
+		for(int curr = sum-v[i]; curr>= 0; curr--){
+			min_self(dp[curr+v[i]], dp[curr] +w[i]);
+		}
+
+	}
+
+	
+	ll ans = 0;
+	for(int i =sum;i>=0;i--){
+		if(dp[i] <= W){
+			debug() << i << " " << W;
+		
+			ans = max(ans,(ll)i);
+		}
+	}
+	cout << ans << "\n";
+	
+	//return 0;
 }

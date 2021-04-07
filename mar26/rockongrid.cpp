@@ -33,13 +33,39 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
-#define FOR(i,n) for (int i = 0; i < (n); ++i)
-
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
+ 
+#define rep(i,n) for (int i = 0; i < (n); ++i)
 
 using ll = long long;
 
+using P = pair<int,int>;
+
 int main() {
+	int h,w,n;
+	cin >> h >> w >> n;
+	vector<int> a(w,h), b(h,w);
+	rep(i,n) {
+		int x, y;
+		cin >> x >> y;
+		--x; --y;
+		a[y] = min(a[y], x);
+		b[x] = min(b[x], y);
+	}
+	ll ans = 0;
+	rep(y,b[0]) ans += a[y];
+	rep(x,a[0]) ans += b[x];
+	
+	fenwick_tree<int> t(w);
+	
+	rep(y,b[0]) t.add(y,1);
+    
+    vector<vector<int>> ends(h+1);
+	
+	rep(y,b[0]) ends[a[y]].push_back(y);
+	rep(x,a[0]) {
+	  for (int y : ends[x]) t.add(y, -1);
+		ans -= t.sum(0,b[x]);
+	  }
+    cout << ans;
 	return 0;
 }

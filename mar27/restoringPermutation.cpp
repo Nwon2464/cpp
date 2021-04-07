@@ -33,13 +33,56 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
+ 
 #define FOR(i,n) for (int i = 0; i < (n); ++i)
 
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
 
 using ll = long long;
 
 int main() {
-	return 0;
+	int t;
+	cin >> t;
+	while(t--){
+		string s;
+		cin >> s;
+		int n = s.length();
+		vector<bool> exists(26);
+		//vector<int>first(26);
+		for(int i =0;i<n;++i){
+			int x = s[i] - 'a';
+			exists[x] = true;
+		}
+		int start = 0;
+		while(true){
+			bool anything = false;
+			for(int use= 25;use>=0 ;--use){
+				if(exists[use]){
+					int where = start;
+					while(s[where] - 'a' !=use){
+						where++;
+					}
+					vector<bool> in_suffix(26);
+					for(int i=where;i<n;++i){
+						if(exists[s[i]-'a']){	
+							in_suffix[s[i]-'a'] = true;
+						}
+					}
+					if(in_suffix == exists){
+						cout << s[where];
+						exists[s[where]-'a'] = false;
+						start  = where+1;
+						anything = true;
+						break;
+					}
+				}
+				//assert(use !=0);
+			}
+			if(!anything){
+				break;
+			}
+		}
+		//puts("");
+		cout << "\n";
+	}
 }
+

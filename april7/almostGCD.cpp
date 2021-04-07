@@ -40,6 +40,34 @@ priority_queue<int, vector<int>, greater<int>> min_pq;
 
 using ll = long long;
 
+ll gcd(ll a,ll b){
+	return b == 0 ? a : gcd(b, a % b);
+}	
+
 int main() {
+	
+	int n;
+	cin >> n;
+	vector<int> a(n);
+	unordered_map<int,int> mp;
+	
+	FOR(i,n) cin >> a[i];
+	int ans = -1, t = 0;
+	for(int i = 2; i<=1000;i++){
+		int cnt = 0;
+		for(int j = 0;j< n;j++){
+			if(a[j] % i == 0){
+				cnt++;
+			}
+		}
+		if(cnt > t){
+			t = cnt;
+			ans = max(ans,i);
+		}
+	}
+	cout << ans;
+	
+	
+	
 	return 0;
 }

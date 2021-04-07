@@ -33,13 +33,20 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
-#define FOR(i,n) for (int i = 0; i < (n); ++i)
-
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
-
+ 
+//Codeforces Round #663 (Div. 2) C-cyclic permutations
+//formula n! - 2^(n-1) 
+//input 4  => 4! - 2^(4-1) = 24 - 8 = 16 
 using ll = long long;
-
+const int mod = 1e9+7;
 int main() {
-	return 0;
+	int n ;
+	cin >> n;
+	ll x= 1,y = 1,a =1,b=1;
+	for(int i=2;i<=n;i++){
+		x = (x * i)%mod;
+		y = (y * 2)%mod;
+	}
+	cout << (x-y+mod)%mod;
+	
 }

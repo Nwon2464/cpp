@@ -41,5 +41,21 @@ priority_queue<int, vector<int>, greater<int>> min_pq;
 using ll = long long;
 
 int main() {
+	cout << fixed << setprecision(15);
+	int n;
+	cin >> n;
+	ll x = 0,z = -1e5+5;
+	ll y = 0;
+	while(n--){
+		ll val;
+		cin >> val;
+		x += abs(val);
+		y += abs(val*val);
+		z = max(z,abs(val)); 
+	}
+	cout << x << endl;
+	cout <<	sqrt(y) << endl;
+	cout << z << endl;
 	return 0;
 }
+

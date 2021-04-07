@@ -33,13 +33,36 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
-#define FOR(i,n) for (int i = 0; i < (n); ++i)
-
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
+ 
 
 using ll = long long;
 
 int main() {
+	
+	int t;
+	cin >> t;
+	while(t--){
+		string s1, s2;
+		cin >> s1 >> s2;
+		int n = s1.size();
+		int k = s2.size();
+		int cnt = 0;
+		for(int i =n-1;i>=0;i--){
+			string x;
+				
+			x= s1.substr(i);
+			debug() << x;
+			
+			if(x == s2) cnt++;
+		}
+		for(int j= k-1;j>=0;j--){
+				string y;
+				y=s2.substr(j);
+				debug() << y;
+				if(y ==s1) cnt++;
+			}
+			cout<< cnt;
+						
+	}
 	return 0;
 }

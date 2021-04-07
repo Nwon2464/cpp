@@ -35,11 +35,31 @@ sim dor(const c&) { ris; }
 //End of debug template
 #define FOR(i,n) for (int i = 0; i < (n); ++i)
 
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
 
 using ll = long long;
 
 int main() {
+
+
+	int n ;
+	cin >> n;
+	vector<int> a(n);
+	FOR(i,n) cin >> a[i];
+	//int cnt = 0;
+	int check = 0, ans = 0;
+	for(int i =2;i<= 1000;i++){
+		int cnt = 0;
+		FOR(j,n){
+			if(a[j] % i == 0){
+				cnt++;
+			}
+		}
+		if(cnt > check){
+			check = cnt;
+			ans = max(i,ans); 	
+		}
+	}
+	
+		cout << ans << " ";
 	return 0;
 }

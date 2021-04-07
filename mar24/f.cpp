@@ -33,13 +33,50 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
-#define FOR(i,n) for (int i = 0; i < (n); ++i)
-
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
+ 
 
 using ll = long long;
 
 int main() {
+	int n; 
+	cin >> n;
+	map<int,int> dp;
+	vector<int> a(n);
+	for(int i =0;i<n;i++){
+		cin >> a[i];
+	}
+	int max_idx = 0;
+	int max_val = 0;
+	for(int i =0;i<n;i++){
+		dp[a[i]]= dp[a[i]-1]+1;
+		if(max_val < dp[a[i]]){
+			max_val = dp[a[i]];
+			max_idx = a[i];		
+		}
+	}
+	
+	vector<int> ans;
+	for(int i =n-1; i>=0;i--){
+		if(max_idx == a[i]){
+			ans.push_back(i+1);
+			max_idx--;
+		}
+	}
+	debug() << imie(max_val) imie(ans) imie(dp);
+	
+	reverse(ans.begin(),ans.end());
+	
+	cout << max_val << "\n";
+	for(int i=0;i<(int)ans.size();i++){
+		if(i !=0){
+			cout << " ";
+		}
+		cout << ans[i];
+	}
+	cout << endl;
+	
+	
+	
+	
 	return 0;
 }

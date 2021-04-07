@@ -35,11 +35,47 @@ sim dor(const c&) { ris; }
 //End of debug template
 #define FOR(i,n) for (int i = 0; i < (n); ++i)
 
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
 
 using ll = long long;
 
 int main() {
+	
+	int t;
+	cin >> t;
+	while(t--){
+		priority_queue<pair<int,int>> pq;
+		map<int,int> mp;
+		int n;
+		cin >> n;
+		
+		FOR(i,n) {
+			int x;
+			cin >> x;
+			mp[x]++;
+		}
+		for(auto [x,y] : mp){
+			pq.push({y,x});
+		}
+		int sz = n;
+		while(pq.size() >= 2){
+			auto [p1,p2] = pq.top();
+			--p1;
+			pq.pop();
+			auto [p3,p4] = pq.top();
+			--p3;
+			pq.pop();
+			sz -= 2;
+			
+			if(p1){
+				pq.push({p1,p2});
+			}
+			if(p3){
+				pq.push({p3,p4});
+			}
+			
+		}
+		cout << sz << "\n";
+	}
+	
 	return 0;
 }

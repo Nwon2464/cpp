@@ -41,5 +41,14 @@ priority_queue<int, vector<int>, greater<int>> min_pq;
 using ll = long long;
 
 int main() {
+	int n;
+	cin >> n;
+	ll sum = 0;
+	for(int i =0;i<n;i++){
+		ll x,y;
+		cin >> x >> y;
+		sum += (y*(y+1)/2) - (x*(x-1)/2);
+	}
+	cout << sum;
 	return 0;
 }

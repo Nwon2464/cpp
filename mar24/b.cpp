@@ -33,13 +33,30 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
-#define FOR(i,n) for (int i = 0; i < (n); ++i)
-
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
+ 
 
 using ll = long long;
-
-int main() {
-	return 0;
+//codeforces B two-gram
+int n, m, k;
+string s;
+int main()
+{
+ 
+	cin >> n >> s;
+	unordered_map <string,int> mp;
+	for(int i =0;i+1 < (int)s.length();i++){
+		string str;
+		str = s[i];
+		str += s[i+1];
+		mp[str]++;
+	}
+	int ans = 0;
+	string b;
+	for(auto x: mp){
+		if(ans < x.second){
+			ans = x.second;
+			b = x.first;
+		}
+	}
+	cout << b;
 }

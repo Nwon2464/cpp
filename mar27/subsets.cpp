@@ -35,11 +35,27 @@ sim dor(const c&) { ris; }
 //End of debug template
 #define FOR(i,n) for (int i = 0; i < (n); ++i)
 
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
 
 using ll = long long;
-
-int main() {
+vector<vector<int>> ans;
+void search(vector<int> &nums, int i, vector<int>temp){
+	if(i == (int)nums.size()){
+		ans.push_back(temp);
+	}
+	else{	
+		search(nums,i+1,temp);
+		temp.push_back(nums[i]);
+		search(nums,i+1,temp);
+		//temp.pop_back();	
+	}
+}
+int main(){
+    int n;
+    cin >> n;
+    vector<int> nums(n);
+    vector<int> temp;
+    FOR(i,n) cin >> nums[i];
+    search(nums,0,temp);
+	debug() << ans;         
 	return 0;
 }

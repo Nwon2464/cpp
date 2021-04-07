@@ -33,13 +33,57 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
-#define FOR(i,n) for (int i = 0; i < (n); ++i)
-
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
+ 
 
 using ll = long long;
-
-int main() {
-	return 0;
+int n , W, w, v;
+void max_self(ll &a,ll b){
+	a = max(a,b);
 }
+int main() {
+	
+	cin >> n >> W;
+	vector<ll> dp(W+1);
+	//int a[n],b[n];
+	for(int i=0;i<n;++i){
+		//cin >> a[i] >> b[i];
+		cin >> w >> v;
+		for(int curr = W-w; curr>= 0; curr--){
+			
+			max_self(dp[curr+w], dp[curr] +v);
+		}
+
+	}
+	debug() << imie(dp);
+	
+	ll ans = 0;
+	for(auto x : dp){
+		ans = max(ans,x);
+	}
+	cout << dp[W] << "\n";
+	
+	//return 0;
+}
+
+	//storing weight and value in array 
+	//cin >> n >> W;
+	//vector<ll> dp(W+1);
+	//int a[n],b[n];
+	//for(int i=0;i<n;++i){
+		//cin >> a[i] >> b[i];
+	//}
+		
+	//for(int i =0;i<n;i++){
+		//for(int curr = W-a[i]; curr>= 0; curr--){
+			
+			//max_self(dp[curr+a[i]], dp[curr] +b[i]);
+		//}
+	//}
+
+	
+	//ll ans = 0;
+	//for(auto x : dp){
+		//ans = max(ans,x);
+	//}
+	//cout << dp[W] << "\n";
+	

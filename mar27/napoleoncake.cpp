@@ -33,13 +33,37 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
+ 
 #define FOR(i,n) for (int i = 0; i < (n); ++i)
-
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
-
+//Codeforces Round #707 (Div. 2, based on Moscow Open Olympiad in Informatics)
+//B-Napoleon Cake
 using ll = long long;
 
 int main() {
+	int t;
+	cin >> t;
+	while(t--){
+		int n;
+		cin >> n;
+		vector<int> a(n);
+		vector<int> ans(n);
+		FOR(i,n) cin >> a[i];
+		int temp = 0;
+		for(int i = n-1;i>=0;i--){
+			//get the max for every time to decide you put 1 or 0
+			temp = max(a[i],temp);
+			if(temp){
+				ans[i] = 1;
+				--temp;
+			}else{
+				a[i] = 0;
+			}
+		}
+		for(auto x: ans){
+			cout << x << " ";
+		}
+		cout << endl;
+		
+	}
 	return 0;
 }

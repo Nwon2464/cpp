@@ -41,5 +41,32 @@ priority_queue<int, vector<int>, greater<int>> min_pq;
 using ll = long long;
 
 int main() {
+	int n;
+	cin >> n;
+	int a[100], b[100];
+	FOR(i,n) {
+		int x,y;
+		cin >> x >> y;
+		a[i] = x;
+		b[i] = y;
+	}
+	for(int i =0;i<n;i++){
+		for(int j =0;j<i;j++){
+			for(int k =0;k<j;k++){
+				int x1 = a[j] - a[i],y1 = b[j] - b[i];
+				int x2 = a[k] - a[i],y2 = b[k] - b[i]; 
+				if(x2 * y1 == x1 * y2){
+					cout << "Yes\n";
+					return 0;
+				}
+			}
+		}
+	}
+	
+	
+	cout << "No";
+	
+	
+	
 	return 0;
 }

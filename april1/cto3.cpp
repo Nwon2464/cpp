@@ -35,11 +35,33 @@ sim dor(const c&) { ris; }
 //End of debug template
 #define FOR(i,n) for (int i = 0; i < (n); ++i)
 
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
 
 using ll = long long;
 
 int main() {
+	string str;
+	cin >> str;
+	int n = str.size();
+	vector<int> a(3);
+	FOR(i,n) a[(str[i] - '0') % 3]++;
+	
+	int dup = 0;
+	for(int i =1; i< 3; i++) dup += a[i] * i;
+	
+	int ans = 1e9;
+	for(int i = 0;i<3;i++){
+		for(int j =0;j<3;j++){
+			if(a[1] < i) continue;
+			if(a[2] < j) continue;
+			if(i+j == n) continue;
+			int sz = dup;
+			sz -= 1 * i;
+			sz -= 2 * j;
+			if(sz % 3 == 0) ans = min(ans,i+j);
+	
+		}
+	}
+	if(ans == 1e9) ans = -1;
+	cout << ans;
 	return 0;
 }

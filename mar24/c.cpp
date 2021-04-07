@@ -33,13 +33,36 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
-#define FOR(i,n) for (int i = 0; i < (n); ++i)
-
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
+ 
 
 using ll = long long;
-
 int main() {
-	return 0;
-}
+
+	int n, k;
+	scanf("%d %d", &n, &k);
+	
+	vector<int> a(n);
+	for (int i = 0; i < n; ++i)
+		scanf("%d", &a[i]);
+	
+	sort(a.begin(), a.end());
+	
+	int ans;
+	
+	if (k == 0) {
+		ans = a[0] - 1;
+	} else {
+		ans = a[k - 1];
+	}
+	
+	int cnt = 0;
+	
+	for (int i = 0; i < n; ++i)
+		if (a[i] <= ans) ++cnt;
+	
+	if (cnt != k || !(1 <= ans && ans <= 1000 * 1000 * 1000)) {
+		puts("-1");
+		return 0;
+	}
+	
+	printf("%d\n", ans);}

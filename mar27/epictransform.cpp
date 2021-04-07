@@ -33,13 +33,49 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
+
 #define FOR(i,n) for (int i = 0; i < (n); ++i)
-
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
-
 using ll = long long;
 
+
 int main() {
+	int t;
+	cin >> t;
+	while(t--){
+		priority_queue<pair<int,int>>q;
+		map<int,int> mp;
+	
+		int n;
+		cin >> n;
+		FOR(i,n){
+			int x;
+			cin >> x;
+			mp[x]++;
+		}
+		for(auto [val,freq] : mp){
+			q.push({freq,val});
+		}
+		
+		int sz = n;
+		while(q.size() >= 2){
+			auto [x1,y1] = q.top();
+			q.pop();
+			auto [x2,y2] = q.top();
+			q.pop();
+			x1--;
+			x2--;
+			
+			sz-=2;
+			if(x1){
+				q.push({x1,y1});
+			}
+			if(x2){
+				q.push({x2,y2});
+			}
+		}
+		cout << sz << "\n";
+	}
+	
+	
 	return 0;
 }

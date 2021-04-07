@@ -35,11 +35,69 @@ sim dor(const c&) { ris; }
 //End of debug template
 #define FOR(i,n) for (int i = 0; i < (n); ++i)
 
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
 
 using ll = long long;
 
+int getTotalBits(string &s,char& ch){
+	int totalBits = 0;
+	bool flag = false;
+	
+	for(int i =0;i<(int)s.size();i++){
+		if(s[i] == ch){
+			flag = true;
+		}
+		if(flag){
+			totalBits = totalBits |  1 << (s[i]-'a');
+		}
+	}
+	
+	return totalBits;
+
+}
+
+
+  
 int main() {
+	
+	int t;
+	cin >> t;
+	while(t--){
+		string s;
+		cin >> s;
+		int n = s.size();
+		vector<bool> exists(26);
+		FOR(i,n)  exists[s[i]-'a'] = true;
+		int where = 0;
+		while(true){
+			bool flag = false;
+			for(int use = 25; use>=0;use--){
+				if(exists[use]){
+					int idx = where;
+					while(s[idx]-'a'!= use){
+						++idx;
+					} 
+					vector<bool> vis(26);
+					for(int j=idx; j<n; j++){
+						if(exists[s[j]-'a']){
+							vis[s[j]-'a']= true;
+						}
+					}
+					if(vis == exists){
+						cout << s[idx];
+						exists[s[idx] -'a'] = false;
+						where = idx +1;
+						flag = true;
+						break;
+					}
+				}
+			}
+			if(!flag) break;
+		}
+		cout << endl;
+	}
+	
+	
+	
+	
 	return 0;
 }

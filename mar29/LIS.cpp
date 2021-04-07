@@ -35,11 +35,53 @@ sim dor(const c&) { ris; }
 //End of debug template
 #define FOR(i,n) for (int i = 0; i < (n); ++i)
 
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
 
 using ll = long long;
+    
 
 int main() {
+	
+	int t;
+	cin >> t;
+	while(t--){
+		int n,k1,k2;
+		cin >> n >> k1 >> k2;
+		int w,b;
+		cin >> w >> b;
+		//vector<vector<int>> a(2,vector<int> (n,1));
+		 //0 = "white" 1 = "black";
+		//for(int j=0;j<k1;j++){
+			//a[0][j] = 0;
+		//for(int j=0;j<k2;j++){
+			//a[1][j] = 0;
+		//}
+		int total = 2 * n;
+		int tw = k1 + k2;
+		int tb = total - tw;
+		
+		if(tw >= w*2 && tb >= b*2) cout<< "YES\n";
+		else{
+			cout << "NO\n";
+		}
+		//cout <<  ? : << endl;
+		//int cnt = w+b;
+		//vector<vector<bool>> visited(2,vector<bool> (n,false));
+		
+		//for(int i =0;i<2;i++){
+			//for(int j =0;j<n;j++){
+				//if(!visited[i][j] && a[i+1][j] == 0 || a[i][j+1] == 0){
+					//cnt--;
+					//visited[i][j] = true;
+				//}					
+			//}
+		//}
+			
+		
+			
+	}
+			
+			
+			
+		
 	return 0;
 }

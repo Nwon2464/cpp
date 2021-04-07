@@ -33,13 +33,32 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
-#define FOR(i,n) for (int i = 0; i < (n); ++i)
-
-priority_queue<int> max_pq;
-priority_queue<int, vector<int>, greater<int>> min_pq;
+ 
 
 using ll = long long;
+using ull = unsigned long long;
+//1 2   1 3             3 => 2
+//3 4   2 4
+//1,0 
+//3-2 ,3-3
+//1.1
 
+//row   col
+const int mod = 1e6;
 int main() {
+	int t;
+	cin >> t;
+	while(t--){
+	ull n,m,x;
+	cin >> n >> m >> x;
+	    x--;
+	    ll r = x/n;
+	    ll c = x%n;
+	    
+	    ll ans = c * m + r +1;
+	    
+		cout << ans  << '\n';
+	}
 	return 0;
 }
+

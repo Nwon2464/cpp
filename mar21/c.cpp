@@ -32,28 +32,31 @@ sim dor(const c&) { ris; }
 using ll = long long;
 int H, W;
 const int nax = 1005;
+char grid[nax][nax];
 const int mod = 1e9+7;
+
 void mod_self(int & a, int b){
 	a += b;
 	if(a >= mod){
 		a -= mod;
 	}
 }
+
+//dp contest - grid
 int main() {
 	cin >> H >> W;
 	vector<pair<int,int>> directions {{1,0},{0,1}};
 	vector< vector<int>> dp (H, vector<int> (W));
-	char grid[10][10];
 	
 	for(int i=0; i < H; i++){
 		cin >> grid[i];
-	
-	}
+	}   
+
 	dp[0][0] = 1;
 	for(int i=0; i < H; i++){
 		for(int j = 0; j<W;j++){
 			for(pair<int,int> dir:directions){
-	
+
 				int rowX = dir.first + i;
 				int colY = dir.second + j;
 				if(rowX < H  && colY < W && grid[rowX][colY] == '.'){
