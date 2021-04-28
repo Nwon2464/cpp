@@ -33,56 +33,47 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
- 
-using ll = long long;
-void max_self(ll &a,ll b){
-	a = max(a,b);
+#define sfl(a)           scanf("%lld",&a)
+
+
+
+
+
+
+priority_queue<int> max_pq;
+priority_queue<int, vector<int>, greater<int>> min_pq;
+
+//using ll = long long;
+
+#define rep(i, a, b) for(int i = a; i < (b); ++i)
+#define all(x) begin(x), end(x)
+#define sz(x) (int)(x).size()
+typedef long long ll;
+typedef pair<int, int> pii;
+typedef vector<int> vi;
+
+
+
+
+
+
+
+
+
+const int LIM = 12;
+int phi[LIM];
+
+void calculatePhi() {
+	rep(i,0,LIM) phi[i] = i&1 ? i : i/2;
+	for (int i = 3; i < LIM; i += 2) {
+		if(phi[i] == i){	
+			for (int j = i; j < LIM; j += i) phi[j] -= phi[j] / i;
+		}
+	}
 }
 int main() {
-	int n,W;
-	cin >> n >> W;
-	vector<ll> dp(W+1);
-	//int a[n],b[n];
-	for(int i=0;i<n;++i){
-		//cin >> a[i] >> b[i];
-		int w,v;
-		cin >> w >> v;
-		
-		for(int curr = W-w; curr>= 0; curr--){		
-			max_self(dp[curr+w], dp[curr] +v);
-		}
-	debug() << imie(dp);
-	
-	}
-	
-	ll ans = 0;
-	for(auto x : dp){
-		ans = max(ans,x);
-	}
-	cout << ans;
-	
-	return 0;
+	cin.tie(0)->sync_with_stdio(0);
+	cin.exceptions(cin.failbit);
+	calculatePhi();
+	rep(i,0,LIM) cout << phi[i] << endl;
 }
-
-	//storing weight and value in array 
-	//cin >> n >> W;
-	//vector<ll> dp(W+1);
-	//int a[n],b[n];
-	//for(int i=0;i<n;++i){
-		//cin >> a[i] >> b[i];
-	//}
-		
-	//for(int i =0;i<n;i++){
-		//for(int curr = W-a[i]; curr>= 0; curr--){
-			
-			//max_self(dp[curr+a[i]], dp[curr] +b[i]);
-		//}
-	//}
-
-	
-	//ll ans = 0;
-	//for(auto x : dp){
-		//ans = max(ans,x);
-	//}
-	//cout << dp[W] << "\n";
-	

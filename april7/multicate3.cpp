@@ -41,11 +41,13 @@ priority_queue<int, vector<int>, greater<int>> min_pq;
 using ll = long long;
 
 int main() {
-	cout << fixed << setprecision(3);
+
 	ll x;
 	double y;
 	cin >> x >> y;
-	ll ans = (x * (y * 100))/100;
-	//cout >> ans;
-	return 0;
+	ll yy = y * 100 + 0.1;
+		
+	x *= yy;
+	x /= 100;
+	cout << x;
 }

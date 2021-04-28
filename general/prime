@@ -1,0 +1,87 @@
+PRIME NUMBER - Only having 2 factors (1,itself) == gcd(1,itset) == 1 
+i.e)  2  => 1,2,  17 => 1,17
+COMPOSITE NUMBER (to be composite number, you have to have more than 2 factors)
+i.e) 24 => 1,2,3,4,6,8,12,24 it has more factors than just 1 and itself 
+NEITHER
+i.e) 1 => it only has 1 factor. to be prime number, it has to have 2 factors
+
+
+Sieve of Eratosthenes
+
+Sieve of Eratosthenes is an algorithm for finding all the prime numbers in a segment [1;n] using 
+-------------------------
+Time Complexity         |
+O(nloglogn) operations. |
+O(n) for space          |
+-------------------------
+
+int n;
+vector<int> is_prime(n+1, true);
+is_prime[0] = is_prime[1] = false;
+for (int i = 2; i <= n; i++) {
+    if (is_prime[i] && (long long)i * i <= n) {
+        for (int j = i * i; j <= n; j += i)
+            is_prime[j] = false;
+    }
+}
+
+when n = 15 [is_prime:[0,0,1,1,0,1,0,1,0,0,0,1,0,1,0,0]]
+
+
+
+
+---------------------------------------------------------------------------------------------------
+Sieve of Eratosthenes Having Linear Time Complexity
+
+it makes sense to use the described algorithm only until for numbers of order 10^7 and not greater.
+
+const int N = 10000000;
+int lp[N+1];
+vector<int> pr;
+
+for (int i=2; i<=N; ++i) {
+    if (lp[i] == 0) {
+        lp[i] = i;
+        pr.push_back (i);
+    }
+    for (int j=0; j<(int)pr.size() && pr[j]<=lp[i] && i*pr[j]<=N; ++j)
+        lp[i * pr[j]] = pr[j];
+}
+
+when n = 15 [pr:[2,3,5,7,11,13]]
+
+
+
+--------------------------------------------------------------------------------------------------
+
+Different optimizations of the Sieve of Eratosthenes
+
+
+
+---------------------------------------------------------------------------------------------------
+prime integer factorization. its okay til O^10
+
+-------------------
+time complexity   |
+O(√n)             |
+-------------------
+
+
+
+vector<long long> trial_division1(long long n) {
+	vector<long long> factorization;
+	for (long long d = 2; d * d <= n; d++) {
+		while (n % d == 0) {
+			factorization.push_back(d);
+			n /= d;
+		}
+	}
+	if (n > 1){
+		factorization.push_back(n);
+	}
+	return factorization;
+}
+when n = 15 factorization [3,5]         // 2 3 5 7 11 13 is prime number 
+				         // 15 = 3 * 5 which all prime number
+				          
+

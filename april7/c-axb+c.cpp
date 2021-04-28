@@ -33,56 +33,28 @@ sim dor(const c&) { ris; }
 };
 #define imie(...) "["<<#__VA_ARGS__":"<<(__VA_ARGS__)<<"]"
 //End of debug template
- 
+#define FOR(i,n) for (int i = 0; i < (n); ++i)
+
+priority_queue<int> max_pq;
+priority_queue<int, vector<int>, greater<int>> min_pq;
+
 using ll = long long;
-void max_self(ll &a,ll b){
-	a = max(a,b);
-}
+
 int main() {
-	int n,W;
-	cin >> n >> W;
-	vector<ll> dp(W+1);
-	//int a[n],b[n];
-	for(int i=0;i<n;++i){
-		//cin >> a[i] >> b[i];
-		int w,v;
-		cin >> w >> v;
-		
-		for(int curr = W-w; curr>= 0; curr--){		
-			max_self(dp[curr+w], dp[curr] +v);
-		}
-	debug() << imie(dp);
 	
+	int n;
+	cin >> n;
+	//A*B+C assumes c >0 
+	//then, only care about A and B which lead to A*B < N 
+	//A is fixed and is similiar to i to N-1 
+	//then B = (N-1)/A
+
+	//--n;
+	int cnt = 0;
+	for(int i =1;i < n;i++){
+			cnt += (n-1)/i;
 	}
-	
-	ll ans = 0;
-	for(auto x : dp){
-		ans = max(ans,x);
-	}
-	cout << ans;
+	cout << cnt;
 	
 	return 0;
 }
-
-	//storing weight and value in array 
-	//cin >> n >> W;
-	//vector<ll> dp(W+1);
-	//int a[n],b[n];
-	//for(int i=0;i<n;++i){
-		//cin >> a[i] >> b[i];
-	//}
-		
-	//for(int i =0;i<n;i++){
-		//for(int curr = W-a[i]; curr>= 0; curr--){
-			
-			//max_self(dp[curr+a[i]], dp[curr] +b[i]);
-		//}
-	//}
-
-	
-	//ll ans = 0;
-	//for(auto x : dp){
-		//ans = max(ans,x);
-	//}
-	//cout << dp[W] << "\n";
-	

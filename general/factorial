@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+const int N =1e6+7;
+ll fact[N], mod = 1e9 + 7;
+
+void factmod(ll n) {
+    fact[0] = 1;
+    for (int i = 1; i < N; i++)
+        fact[i] = fact[i-1] * i % mod;
+    // precomputes all factorial [1!,2!,3!,....N]      
+}
+
+ll factmod(ll n) {
+    fact[0] = 1;
+    for (int i = 1; i < N; i++)
+        fact[i] = fact[i-1] * i % mod;
+    
+    ll res = 1;
+    while (n > 1) {
+        if ((n/mod) % 2)
+            res = mod - res;
+        res = res * fact[n%mod] % mod;
+        n /= mod;
+    }
+    return res; 
+    // below : find one n!  
+}
+
+

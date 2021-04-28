@@ -39,7 +39,19 @@ priority_queue<int> max_pq;
 priority_queue<int, vector<int>, greater<int>> min_pq;
 
 using ll = long long;
-
-int main() {
-	return 0;
+//inequaility
+//panasonic contenst 2020 C 
+int main(){
+	
+	ll a,b,c;
+	cin >> a >> b >> c;
+	ll d = c - a- b;
+	
+	//d needs to be greater than 0 because of constraint
+	//1≤a,b,c≤10^9
+	if(4 * a * b < d* d && d > 0){
+	 cout << "Yes" << endl;
+	 } else {
+	 cout << "No" << endl;
+	 }
 }

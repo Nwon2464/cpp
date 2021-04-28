@@ -1,0 +1,68 @@
+  pair<ll, ll> a, b;
+  cin >> a >> b;
+  --a.f; --a.s; --b.f; --b.s;
+//need to use template (pair cin template)
+template<typename A, typename B> istream& operator>>(istream& cin, pair<A, B> &p) { cin >> p.first;return cin >> p.second;}
+
+
+
+vector<int> v(n);
+    for (int &e : v) {
+        cin >> e;
+    }
+
+
+  
+  
+ 2d grid
+ cin >> n >> m;
+ char grid[n][m];
+ string s;
+ f0r(i, n) {
+    cin >> s;
+    f0r(j, m) grid[i][j] = s[j];
+  }
+  
+  
+  
+2d grid
+string mat[405];
+	cin >> n;	
+	for (ll i = 0; i < n; i++) {
+		cin >> mat[i];	
+		for (ll j = 0; j < n; j++) {
+			if (mat[i][j] == '*') v.push_back({i, j});
+		}
+	}
+	
+	
+	
+set graph pair insertion
+set <int> a[N];
+a[i].insert(j);
+b[j].insert(i);
+
+
+
+interesting BFS and string compare( look at c)
+for (int c = '1'; c <= '3'; c++) {
+    deque<pair<int, int>> q;
+    for (int i = 0; i < n; i++)
+      for (int j = 0; j < m; j++)
+        if (s[i][j] == c) {
+          dist[c - '1'][i][j] = 0;
+          q.push_back(make_pair(i, j));
+        }
+    //BFS
+    while(!queue.empty()){
+    }
+}
+ 
+ 
+ 
+ vector<vector<pair<int,int>>> same as below
+ vector<pair<int,int>> edges[MAX_N];
+ edges[a].push_back({b, w});
+ edges[b].push_back({a, w});
+ 
+ 
