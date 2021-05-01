@@ -35,52 +35,88 @@ template<typename T> void max_self(T &a, const T b) {a = max(a,b);}
 template<typename T> void min_self(T &a, const T b) {a = min(a,b);}
 priority_queue<int> max_pq;
 priority_queue<int, vector<int>, greater<int>> min_pq;
-
+//ll gcd(ll a, ll b){
+	//return (b == 0 ? a : gcd(b,a%b));
+//}
+//const int nax =2e5+5;
+//int b[nax];
+//int main() {
+	//ios::sync_with_stdio(0);
+	//cin.tie(0);
+	
+	//int n;
+	//cin >> n;
+	//vector<int> a(n);
+	//rep(i,0,n) {
+		//cin >> a[i];
+		//b[a[i]]++;
+	//}
+	//int ans = 0;
+	//sort(a.begin(),a.end());
+	//vector<int> t;
+	//for(int x: a){
+		//int res = 0;
+		//for(int j =x;j<nax;j+=x){
+			//if(b[j]){
+				//res = gcd(res,j);
+				//b[j] = 0;
+			//}
+		//}
+		//ans = max(ans,res);
+	//}
+	
+	//cout << ans <<"\n";
+	//return 0;
+//}
+//ll gcd(ll a, ll b){
+	//return (b == 0 ? a : gcd(b,a%b));
+//}
+const int nax =1e6+5;
+int b[nax+1],a[nax];
 int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
-    
-    int t;
-    cin >> t;
-    while(t--){
-		int n;
-		cin >> n;
-		int ans = 0;
-		while(n){
-			ans += n % 10;
-			n /= 10;
-			if(n  == 0 && ans > 9){
-				n = ans;
-				ans = 0;
-			}
-		}
-		cout << ans << "\n";
+	
+	int n;
+	cin >> n;
+	rep(i,0,n) {
+		cin >> a[i];
+		b[a[i]]++;
 	}
-    return 0;
+	
+	for(int i=nax; i; i--){
+		int c = 0;
+		for(int j = i; j <=nax; j+=i){
+			c += b[j];
+		}
+		if(c > 1){
+			return cout << i ,0;
+		}
+	}
+	return 0;
 }
 
+//int cnt[1000001];
 
-int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-    
-    int t;
-    cin >> t;
-    while(t--){
-		int n;
-		cin >> n;
-		while(n >= 10){
-			int new_ = 0;
-			while(n){
-				new_ += n % 10;
-				n /= 10;
-			}
-			n = new_;
-		}
-		cout << n << "\n";
-	}
-    return 0;
-}
+//int main() {
+	//ios_base::sync_with_stdio(0);
+	//cin.tie(0);
+	//int n;
+	//cin >> n;
+	//while (n--) {
+		//int x; cin >> x;
+		//cnt[x]++;
+	//}
+	//for (int i = 1000000; i; i--) {
+		//int div = 0;
+		//for (int j = i; j <= 1000000; j += i) div += cnt[j];
+		//if (div > 1) return cout << i, 0;
+	//}
+	//return 0;
+//}
+
+
+
 
 
 

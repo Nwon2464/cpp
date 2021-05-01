@@ -39,48 +39,11 @@ priority_queue<int, vector<int>, greater<int>> min_pq;
 int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
-    
-    int t;
-    cin >> t;
-    while(t--){
-		int n;
-		cin >> n;
-		int ans = 0;
-		while(n){
-			ans += n % 10;
-			n /= 10;
-			if(n  == 0 && ans > 9){
-				n = ans;
-				ans = 0;
-			}
-		}
-		cout << ans << "\n";
-	}
     return 0;
 }
 
 
-int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-    
-    int t;
-    cin >> t;
-    while(t--){
-		int n;
-		cin >> n;
-		while(n >= 10){
-			int new_ = 0;
-			while(n){
-				new_ += n % 10;
-				n /= 10;
-			}
-			n = new_;
-		}
-		cout << n << "\n";
-	}
-    return 0;
-}
+
 
 
 

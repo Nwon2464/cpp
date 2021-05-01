@@ -35,52 +35,48 @@ template<typename T> void max_self(T &a, const T b) {a = max(a,b);}
 template<typename T> void min_self(T &a, const T b) {a = min(a,b);}
 priority_queue<int> max_pq;
 priority_queue<int, vector<int>, greater<int>> min_pq;
-
+map<int,vector<pair<int,int>>>p;
+//g[u].push_back({v,w});
+//g[v].push_back({u,w});
+//v = g[u][i].first;
+const int nax = 1e6+5;
+int a[nax];
+int n,m,q;
 int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
-    
-    int t;
-    cin >> t;
-    while(t--){
-		int n;
-		cin >> n;
-		int ans = 0;
-		while(n){
-			ans += n % 10;
-			n /= 10;
-			if(n  == 0 && ans > 9){
-				n = ans;
-				ans = 0;
+	cin >> n;
+	int x = 1,y = 0;
+	//2 7 3 4 9
+	for(int i = 1; i <=n;i++){
+		int temp1;
+		cin >> temp1;
+		y += temp1;
+		p[i].push_back({x,y});
+		x += temp1;
+	};
+	
+	cin >> q;
+	for(int i = 0; i < q;i++){
+		cin >> a[i];
+	}
+	for(int i = 0; i < q;i++){	
+		for(auto v : p){
+			if(v.s[0].f <=a[i] && a[i] <= v.s[0].s){
+				cout << v.f << "\n";
+				break;
+				
 			}
 		}
-		cout << ans << "\n";
 	}
+	
+	
     return 0;
 }
 
 
-int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-    
-    int t;
-    cin >> t;
-    while(t--){
-		int n;
-		cin >> n;
-		while(n >= 10){
-			int new_ = 0;
-			while(n){
-				new_ += n % 10;
-				n /= 10;
-			}
-			n = new_;
-		}
-		cout << n << "\n";
-	}
-    return 0;
-}
+
+			
 
 
 

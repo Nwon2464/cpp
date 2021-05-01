@@ -36,51 +36,57 @@ template<typename T> void min_self(T &a, const T b) {a = min(a,b);}
 priority_queue<int> max_pq;
 priority_queue<int, vector<int>, greater<int>> min_pq;
 
-int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
     
-    int t;
-    cin >> t;
-    while(t--){
-		int n;
-		cin >> n;
-		int ans = 0;
-		while(n){
-			ans += n % 10;
-			n /= 10;
-			if(n  == 0 && ans > 9){
-				n = ans;
-				ans = 0;
-			}
-		}
-		cout << ans << "\n";
-	}
+    // 100000 = 10^5
+    // 99999 = 45
+    // Sum of digits can be 45 max
+    
+    vector<int> hash(46);
+    for(int N = 1; N <= 45; N++){
+        int ans = 0;
+        // Find all possible values for i
+        for(int digit1 = 0; digit1 < 10; digit1++){
+            for(int digit2 = 0; digit2 < 10; digit2++){
+                for(int digit3 = 0; digit3 < 10; digit3++){
+                    for(int digit4 = 0; digit4 < 10; digit4++){
+                        for(int digit5 = 0; digit5 < 10; digit5++){
+							 if(digit1 + digit2 + digit3 + digit4 + digit5 == N){
+                                ans++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Store the answer
+        hash[N] = ans;
+    }
+    
+    
+    int T;
+    cin >> T;
+    while(T--){
+        int N;
+        cin >> N;
+        
+        // Sum can not be greater than 45
+        if(N > 45){
+            cout << 0 <<"\n";
+        }
+        else{
+            cout << hash[N] <<"\n";
+        }
+    }
+    
+    
     return 0;
+    
 }
 
-
-int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-    
-    int t;
-    cin >> t;
-    while(t--){
-		int n;
-		cin >> n;
-		while(n >= 10){
-			int new_ = 0;
-			while(n){
-				new_ += n % 10;
-				n /= 10;
-			}
-			n = new_;
-		}
-		cout << n << "\n";
-	}
-    return 0;
-}
 
 
 

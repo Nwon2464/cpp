@@ -38,67 +38,48 @@ priority_queue<int, vector<int>, greater<int>> min_pq;
 using u64 = uint64_t;
 using u128 = __uint128_t;
 
-ll gcd(ll a,ll b){	
-	return (b == 0 ? a : gcd(b,a%b));
-}
-
-int count_primes(int n) {
-    const int S = 10000;
-
-    vector<int> primes;
-    int nsqrt = sqrt(n);
-    vector<char> is_prime(nsqrt + 1, true);
-    for (int i = 2; i <= nsqrt; i++) {
-        if (is_prime[i]) {
-            primes.push_back(i);
-            for (int j = i * i; j <= nsqrt; j += i)
-                is_prime[j] = false;
-        }
-    }
-
-    int result = 0;
-    vector<char> block(S);
-    for (int k = 0; k * S <= n; k++) {
-        fill(block.begin(), block.end(), true);
-        int start = k * S;
-        for (int p : primes) {
-            int start_idx = (start + p - 1) / p;
-            int j = max(start_idx, p) * p - start;
-            for (; j < S; j += p)
-                block[j] = false;
-        }
-        if (k == 0)
-            block[0] = block[1] = false;
-        for (int i = 0; i < S && start + i <= n; i++) {
-            if (block[i])
-                result++;
-        }
-    }
-    return result;
-}
-ll n,k;
+ll r, k;
 int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
-	cin >> n >> k;
-	ll a[(n/2)+1];
-	ms(a,0);
-	ll res = 1;
-	ll cnt = 0;
-	for(ll i=1;i<=k;i++){
-		ll c;
-		cin >> c;
-		res *= c;
-		for(ll j=c;j<=n;j+=c){
-			cnt++;
-		}
+	vector<ll> p;
+	//if r= 20,
+	//and prime number is not given, instead natural number is given n = 20, 
+	//you need to find and 
+	// count the number of integers in the interval [1;r] that are relatively prime to n 
+	//(their greatest common divisor is 1).
+	cin >> r >> k;
+	for(int i =0;i<k;i++){
+		ll x;
+		cin >> x;
+		p.push_back(x);
 	}
-	for(ll i=res;i<=n;i+=res){
-			cnt--;
-		}
-	cout << cnt << " ";
-    return 0;
+	ll sum = 0;
+    for (ll msk=1; msk<(1<<p.size()); ++msk) {
+        double mult = 1; // double in used  to prevent from multiplying overflow 
+           ll bits = 0;
+        for (ll i=0; i<(ll)p.size(); ++i)
+            if (msk & (1<<i)) {
+                ++bits;
+                mult *= p[i]; // ------------------
+            } // when you mult *= p[i] since double in used, prevent from overflow
+			  // when mult *= p[i] with double , it give me scientific value i,e x.xxxxxxe+32
+           //24929660627620033 * 16706748220911473 ==> overflow when used ll mult = 1
+        
+        ll cur = r / (ll)mult;// typecasting needed to get 0 for ll cur
+         // i.e) if you dont typecasting  r / x.xxxxxxxx+30 => x.xxxxxxxxxx+xx
+         // if you typecast, r / (ll)mult = 0, bc demoniator is always greater in this case. 
+                               
+        if (bits % 2 == 1) //if bit rem is 1, new subset adding
+            sum += cur;
+        else // if rem is 0, substracting duplicate subsets
+            sum -= cur;
+    }
+    cout << sum << "\n";
+	//cout << r- sum;
+	return 0;
 }
+
 
 
 

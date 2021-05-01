@@ -1,3 +1,7 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
 using priority queue (set delete old pair from the queue,but pq doesnt)
 --------------------------------
  PQ dijkstra alogorithms       |
@@ -8,9 +12,6 @@ using priority queue (set delete old pair from the queue,but pq doesnt)
 Using PQ is based on heaps,
 priority_queue has a drawback compared to Set : it doesn't support the operation of removing an element. Because of this we need to do a "workaround", that actually leads to a slightly worse factor log(m) instead of log(n) (although in terms of complexity they are identical). 
 
-#include<bits/stdc++.h>
-using namespace std;
-using ll = long long;
 int n,m;
 map<int,vector<pair<int,int>>>g;
 #define inf 1000000000000000000 //18

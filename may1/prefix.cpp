@@ -39,48 +39,30 @@ priority_queue<int, vector<int>, greater<int>> min_pq;
 int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
-    
-    int t;
-    cin >> t;
-    while(t--){
-		int n;
-		cin >> n;
-		int ans = 0;
-		while(n){
-			ans += n % 10;
-			n /= 10;
-			if(n  == 0 && ans > 9){
-				n = ans;
-				ans = 0;
-			}
+	vector<vector<int>> a = {{1,2,1},{3,4,1},{2,1,1},{2,1,1}};
+	vector<vector<int>> prefix(4,vector<int> (3));
+	// 1 2 1
+	// 3 4 1
+	// 2 1 1
+	// 2 1 1 
+	for(int i =0 ; i < 4;i++){
+		for(int j =0 ; j < 3;j++){
+			prefix[i][j] = a[i][j] + (j == 0 ? 0 : prefix[i][j-1]);
 		}
-		cout << ans << "\n";
 	}
+	for(int row = 0 ;row < 4; row++){
+         for(int col = 0; col < 3; col++){
+			prefix[row][col] = prefix[row][col] + (row ? prefix[row-1][col] : 0);
+         }
+     }
+	
+	cout << prefix;
+	
     return 0;
 }
 
 
-int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-    
-    int t;
-    cin >> t;
-    while(t--){
-		int n;
-		cin >> n;
-		while(n >= 10){
-			int new_ = 0;
-			while(n){
-				new_ += n % 10;
-				n /= 10;
-			}
-			n = new_;
-		}
-		cout << n << "\n";
-	}
-    return 0;
-}
+
 
 
 

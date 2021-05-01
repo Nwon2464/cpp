@@ -39,48 +39,49 @@ priority_queue<int, vector<int>, greater<int>> min_pq;
 int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
-    
-    int t;
-    cin >> t;
-    while(t--){
-		int n;
-		cin >> n;
-		int ans = 0;
-		while(n){
-			ans += n % 10;
-			n /= 10;
-			if(n  == 0 && ans > 9){
-				n = ans;
-				ans = 0;
-			}
-		}
-		cout << ans << "\n";
-	}
+	int t;
+	cin >> t;
+	while(t--){
+		//int n;
+		//cin >> n;
+		//int cnt = 0;
+		//for(int i=1; i*i <= n; i++){
+			//if(n % i ==0){
+				//cnt++;
+				//cout << i << " ";
+				//if(i != n/i){
+					//cnt++;
+					//cout << n/i << " ";
+				//}			
+			//}
+		//}
+
+		//cout << cnt << "\n";
+	//}
+	
+	//printing sorted order
+	//int i,n;
+	//cin >> n;
+	//int cnt = 0;
+	//for(i=1;i*i<n;i++){
+		//if(n % i == 0){
+			//cnt++;
+			//cout << i << " ";
+		//}
+	//}	
+	
+	//for(;i>=1;i--){
+		//if(n % i == 0){
+			//cnt++;
+			//cout << n/i << " ";
+			//}
+		//}	
+	//}
     return 0;
 }
 
 
-int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-    
-    int t;
-    cin >> t;
-    while(t--){
-		int n;
-		cin >> n;
-		while(n >= 10){
-			int new_ = 0;
-			while(n){
-				new_ += n % 10;
-				n /= 10;
-			}
-			n = new_;
-		}
-		cout << n << "\n";
-	}
-    return 0;
-}
+
 
 
 
