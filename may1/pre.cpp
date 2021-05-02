@@ -39,28 +39,36 @@ priority_queue<int, vector<int>, greater<int>> min_pq;
 int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
-	vector<vector<int>> a = {{1,2,1},{3,4,1},{2,1,1},{2,1,1}};
-	vector<vector<int>> prefix(4,vector<int> (3));
-	// 1 2 1
-	// 3 4 1
-	// 2 1 1
-	// 2 1 1 
-	for(int i =0 ; i < 4;i++){
-		for(int j =0 ; j < 3;j++){
-			prefix[i][j] = a[i][j] + (j == 0 ? 0 : prefix[i][j-1]);
-		}
+	int H, W;
+	cin >> H >> W;
+	vector<vector<int>> a(H,vector<int> (W));
+	rep(i,0,H)rep(j,0,W){
+			cin >> a[i][j];
 	}
-	for(int row = 0 ;row < 4; row++){
-         for(int col = 0; col < 3; col++){
-			prefix[row][col] = prefix[row][col] + (row ? prefix[row-1][col] : 0);
-         }
-     }
+	vector<vector<int>> prefix(H,vector<int> (W));
 	
+	rep(i,0,H) rep( j,0,W){
+		prefix[i][j] = a[i][j] + (j ? prefix[i][j-1]: 0);
+	}
+	rep(i,0,H) rep( j,0,W){
+		prefix[i][j] = prefix[i][j] + (i ? prefix[i-1][j]: 0);
+	}
+	
+	//int r1,c1,r2,c2;
+	//cin >> r1 >> c1 >> r2 >>c2;
+	
+	//int as = prefix[r2][c2] + (r1 && c1 ? prefix[r1-1][c1-1] : 0) - (r1?prefix[r1-1][c2] : 0) - ( c1?prefix[r2][c1-1]:0) ;  
+	//cout << as;
+	//cout << "\n" <<45 - 17- 12 + 5;
+
 	cout << prefix;
-	
     return 0;
 }
-
+ //1,2,5, 6,  7,],
+//[3,5,10,13,17,],
+//[4,9,20,28,36,],
+//[6,12,26,36,45,],
+//[10,17,33,46,56,]
 
 
 

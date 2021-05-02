@@ -35,44 +35,40 @@ template<typename T> void max_self(T &a, const T b) {a = max(a,b);}
 template<typename T> void min_self(T &a, const T b) {a = min(a,b);}
 priority_queue<int> max_pq;
 priority_queue<int, vector<int>, greater<int>> min_pq;
-map<int,vector<pair<int,int>>>p;
-//g[u].push_back({v,w});
-//g[v].push_back({u,w});
-//v = g[u][i].first;
-const int nax = 1e6+5;
-int a[nax];
-int n,m,q;
-
 
 int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
-	cin >> n;
-	int y = 0;
-	vector<int> aa(n);
-	for(int i = 0; i <n;i++){
-		int temp1;
-		cin >> temp1;
-		y += temp1;
-		aa[i] = y;
-	};
 	
-	cin >> q;
-	for(int i = 0; i < q;i++){
-		int x;
-		cin >> x;
-		auto it = lower_bound(aa.begin(),aa.end(),x);
-		int ans;
-		ans =distance(aa.begin(), it);
-		cout << ans +1 << "\n"; 
+	//https://www.spoj.com/problems/CSUMQ/
+	int n;
+	cin >> n;
+	vector<int> a(n);
+	rep(i,0,n) cin >> a[i];
+	
+	vector<int> prefix(n);
+	
+	for(int i = 0; i < n; i++){
+		prefix[i] = a[i] + (i ? prefix[i-1] : 0);
 	}
 	
+	
+	int q;
+	cin >> q;
+	while(q--){
+		int x,y;
+		cin >> x >> y;
+		int ans = 0;
+		
+		ans = prefix[y] -(x?prefix[x-1] : 0); 
+		cout << ans << "\n";
+	}
 	
     return 0;
 }
 
 
-		
+
 
 
 
