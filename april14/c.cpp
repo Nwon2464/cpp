@@ -7,13 +7,15 @@ typedef long long ll;
 int const maxn = 25, max_val = 25;
 ll mod = 1e9 + 7, ans = 1;
 int nxt[max_val], n;
-multiset <int> cnt[max_val];
-map <int, int> cnt_divisor[maxn];
+multiset<int> cnt[max_val];
+map<int, int> cnt_divisor[maxn];
 
-void add(int i, int x) {
+void add(int i, int x)
+{
     while (x != 1) {
         int div = nxt[x], add = 0;
-        while (nxt[x] == div) add++, x = x / nxt[x];
+        while (nxt[x] == div)
+            add++, x = x / nxt[x];
 
         int lst = cnt_divisor[i][div];
         cnt_divisor[i][div] += add;
@@ -39,8 +41,8 @@ void add(int i, int x) {
 // 8 = 2^3
 // 12 = 2^2 * 3^1
 
-
-int main() {
+int main()
+{
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
@@ -50,9 +52,11 @@ int main() {
     for (int i = 2; i < maxn; ++i) {
         if (nxt[i] == 0) {
             nxt[i] = i;
-            if (i > 10000) continue;
+            if (i > 10000)
+                continue;
             for (int j = i * i; j < maxn; j += i) {
-                if (nxt[j] == 0) nxt[j] = i;
+                if (nxt[j] == 0)
+                    nxt[j] = i;
             }
         }
     }

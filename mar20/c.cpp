@@ -14,43 +14,45 @@
 
 using namespace std;
 
-bool checkPalindromePermutation(const string s) {
-  vector<int> ascii(26, 0);
-  for (int c : s) {
-    if ('a' <= c && c <= 'z') {
-      ascii[c - 'a']++;
-    } else if ('A' <= c && c <= 'Z') {
-      ascii[c - 'A']++;
+bool checkPalindromePermutation(const string s)
+{
+    vector<int> ascii(26, 0);
+    for (int c : s) {
+        if ('a' <= c && c <= 'z') {
+            ascii[c - 'a']++;
+        } else if ('A' <= c && c <= 'Z') {
+            ascii[c - 'A']++;
+        }
     }
-  }
-  int cnt = 0;
-  for (int i = 0; i < ascii.size(); i++) {
-    if (ascii[i] % 2 == 1) {
-      cnt++;
+    int cnt = 0;
+    for (int i = 0; i < ascii.size(); i++) {
+        if (ascii[i] % 2 == 1) {
+            cnt++;
+        }
     }
-  }
-  if (cnt <= 1) {
-    return true;
-  } else {
-    return false;
-  }
+    if (cnt <= 1) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
-int main() {
-  // string s = "Rats live on no evil star";
-  // if (checkPalindromePermutation(s)) {
-  //   cout << "YES";
-  // } else {
-  //   cout << "No";
-  // }
+int main()
+{
+    // string s = "Rats live on no evil star";
+    // if (checkPalindromePermutation(s)) {
+    //   cout << "YES";
+    // } else {
+    //   cout << "No";
+    // }
 
-  string sieveChars(50, 'P');
-  sieveChars.replace(0, 2, "NN");
-  for (int i = 2; i <= (sieveChars.size() / 2) - 1; i++) {
-    for (int factor = 2; factor * i < sieveChars.size(); factor++) {
-      sieveChars[factor * i] = 'N';
+    string sieveChars(50, 'P');
+    sieveChars.replace(0, 2, "NN");
+    for (int i = 2; i <= (sieveChars.size() / 2) - 1; i++) {
+        for (int factor = 2; factor * i < sieveChars.size(); factor++) {
+            sieveChars[factor * i] = 'N';
+        }
     }
-  }
 
-  return 0;
+    return 0;
 }

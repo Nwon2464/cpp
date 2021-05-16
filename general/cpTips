@@ -43,9 +43,6 @@ By default, the elements in a C++ priority queue are sorted in decreasing order,
 
 -----------------------------------------------------------------------------------
 
-#define sfl(a)           scanf("%lld",&a)
------------------------------------------------------------------------------------
-
 ll gcd(ll a,ll b){
 	return b == 0 ? a : gcd(b, a % b);
 }	
