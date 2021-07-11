@@ -76,6 +76,20 @@ string mat[405];
 		}
 	}
 	
+
+
+int h,w;
+char c[12][12];
+ 
+scanf("%d%d",&h,&w);
+for(int i=0;i<h;i++){
+	scanf("\n");
+	for(int j=0;j<w;j++){
+		scanf("%c",&c[i][j]);
+	}
+}
+
+
 	
 	
 set graph pair insertion
@@ -107,3 +121,54 @@ for (int c = '1'; c <= '3'; c++) {
  edges[b].push_back({a, w});
  
  
+ 
+ 
+ 
+tree getTree(int n, int offset = 1) {
+    tree res(n);
+    for(int i = 0; i < n - 1; i++) {
+        int a, b;
+        cin >> a >> b;
+        a -= offset, b -= offset;
+        res[a].emplace_back(b);
+        res[b].emplace_back(a);
+    }
+    return res;
+}
+template <typename T> WeightedTree<T> getWeightedTree(int n, int offset = 1) {
+    WeightedTree<T> res(n);
+    for(int i = 0; i < n - 1; i++) {
+        int a, b;
+        cin >> a >> b;
+        a -= offset, b -= offset;
+        T c;
+        cin >> c;
+        res[a].emplace_back(b, c);
+        res[b].emplace_back(a, c);
+    }
+    return res;
+}
+ 
+Graph getGraph(int n, int m, int offset = 1) {
+    Graph res(n);
+    for(int i = 0; i < m; ++i) {
+        int a, b;
+        cin >> a >> b;
+        a -= offset, b -= offset;
+        res[a].emplace_back(b);
+        res[b].emplace_back(a);
+    }
+    return res;
+}
+ 
+template <typename T> WeightedGraph<T> getWeightedGraph(int n, int m, int offset = 1) {
+    WeightedGraph<T> res(n);
+    for(int i = 0; i < m; ++i) {
+        int a, b;
+        cin >> a >> b;
+        T c;
+        cin >> c;
+        res[a].emplace_back(b, c);
+        res[b].emplace_back(a, c);
+    }
+}

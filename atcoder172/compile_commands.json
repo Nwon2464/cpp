@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/won/Desktop/cpp/atcoder172/build",
+  "command": "/usr/bin/c++    -o CMakeFiles/cf.dir/b.cpp.o -c /home/won/Desktop/cpp/atcoder172/b.cpp",
+  "file": "/home/won/Desktop/cpp/atcoder172/b.cpp"
+},
+{
+  "directory": "/home/won/Desktop/cpp/atcoder172/build",
+  "command": "/usr/bin/c++    -o CMakeFiles/cf.dir/c.cpp.o -c /home/won/Desktop/cpp/atcoder172/c.cpp",
+  "file": "/home/won/Desktop/cpp/atcoder172/c.cpp"
+},
+{
+  "directory": "/home/won/Desktop/cpp/atcoder172/build",
+  "command": "/usr/bin/c++    -o CMakeFiles/cf.dir/d.cpp.o -c /home/won/Desktop/cpp/atcoder172/d.cpp",
+  "file": "/home/won/Desktop/cpp/atcoder172/d.cpp"
+}
+]

@@ -32,7 +32,7 @@ const uint64_t SEED = chrono::steady_clock::now().time_since_epoch().count() * (
 mt19937_64 rng(SEED);
 // clang-format on
 
-const int N = 100000;
+const int N = 12; //100000;
 vector<int> prime;
 vector<int> lp(N + 1);
 void minprimefact() {
@@ -55,44 +55,19 @@ void minprimefact() {
      // temp) { j = j / lp[j];
      // }
 
-     // for (int i = 2; i <= N; i++) {
-     //      lp[i] = i;
-     // }
-     // for (int i = 2; i * i <= N; i++) {
-     //      if (lp[i] == i) {
-     //           for (int j = i * i; j <= N; j += i) {
-     //                if (lp[j] == j) {
-     //                     lp[j] = i;
-     //                }
-     //           }
-     //      }
-     // }
-     // cout << lp;
-     // for (int i = 2; i <= N; i++) {
-     //      int j = i;
-     //      cout << j << ": ";
-     //      while (j != 1) {
-     //           int temp = lp[j];
-     //           cout << lp[j] << " ";
-     //           j = j / lp[j];
-     //           while (lp[j] == temp) {
-     //                j = j / lp[j];
-     //           }
-     //      }
-     //      cout << "\n";
-     // }
-
-     for (int i = 2; i <= N; ++i) {
-          if (lp[i] == 0) {
-               lp[i] = i;
-               prime.push_back(i);
-          }
-          for (int j = 0;
-               j < (int)prime.size() && prime[j] <= lp[i] && i * prime[j] <= N;
-               ++j) {
-               lp[i * prime[j]] = prime[j];
+     for (int i = 2; i <= N; i++) {
+          lp[i] = i;
+     }
+     for (int i = 2; i * i <= N; i++) {
+          if (lp[i] == i) {
+               for (int j = i * i; j <= N; j += i) {
+                    if (lp[j] == j) {
+                         lp[j] = i;
+                    }
+               }
           }
      }
+     cout << lp;
      for (int i = 2; i <= N; i++) {
           int j = i;
           cout << j << ": ";
@@ -106,6 +81,31 @@ void minprimefact() {
           }
           cout << "\n";
      }
+
+     // for (int i = 2; i <= N; ++i) {
+     //      if (lp[i] == 0) {
+     //           lp[i] = i;
+     //           prime.push_back(i);
+     //      }
+     //      for (int j = 0;
+     //           j < (int)prime.size() && prime[j] <= lp[i] && i * prime[j] <= N;
+     //           ++j) {
+     //           lp[i * prime[j]] = prime[j];
+     //      }
+     // }
+     // for (int i = 2; i <= N; i++) {
+     //      int j = i;
+     //      cout << j << ": ";
+     //      while (j != 1) {
+     //           int temp = lp[j];
+     //           cout << lp[j] << " ";
+     //           j = j / lp[j];
+     //           while (lp[j] == temp) {
+     //                j = j / lp[j];
+     //           }
+     //      }
+     //      cout << "\n";
+     // }
 }
 
 int main() {

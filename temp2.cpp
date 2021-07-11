@@ -45,19 +45,16 @@ template<typename T> void sub_self(T &a, const T b) {a -= b; if(a < 0) {a +=mod;
 template<typename T> void max_self(T &a, const T b) {a = max(a,b);}
 template<typename T> void min_self(T &a, const T b) {a = min(a,b);}
 
-// clang-format on
+const ll LINF = 1001002003004005006ll;
 
 priority_queue<int> max_pq;
 priority_queue<int, vector<int>, greater<int>> min_pq;
 
-// 1s 10^8
-// 2s 2*10^8
-// 3s 3*10^8
-// 100s 10^10
+// 1sec 10^8,  2sec 2*10^8,  3sec 3*10^8 , ..... 9sec 9*10^8, 10sec 10^9, 11sec 2*10^9
+// 100sec 10^10 == 10^2(100sec) * 10^8(1sec) == 100sec
 
-// max size array globally ===>  10^7,  bool  ====> 10^8),
-// max size array inside function ===> 10^6, for 2d arr  a[3000][3000] => 6 *
-// 10^6 <= 10^7,
+// max size array globally ===>  10^7,  bool  ====> 10^8,
+// max size array inside function ===> 10^6, for 2d arr  a[3000][3000] => 6 * 10^6 <= 10^7,
 
 int main() {
      ios::sync_with_stdio(false);
@@ -65,3 +62,9 @@ int main() {
      cout.tie(0);
      return 0;
 }
+
+// clang-format on
+
+// 10^4 * 10^5 = 10^9
+// 1 Second =  1000 Miliseconds
+// 2second = 2000Miliseconds

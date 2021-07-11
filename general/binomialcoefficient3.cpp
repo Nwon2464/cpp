@@ -42,7 +42,9 @@ int main() {
      // 5 * 4 * 3
      // ---------
      // 3 * 2 * 1
-     int n = 5, r = 3;
+     int n, r;
+     cin >> n >> r;
+     // int n = 10, r = 5;
      ll below = 1, above = 1;
      // to be more optimization solution instead of i<=r, use i<= min(r,n-r)
      for (int i = 1; i <= min(r, n - r); i++) {

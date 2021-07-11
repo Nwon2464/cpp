@@ -52,6 +52,7 @@ void precal_factmod() {
      for (ll i = 1; i < N; i++) fact[i] = mul(fact[i - 1], i);
 }
 ll nCr(ll n, ll r) { return mul(fact[n], inv(mul(fact[r], fact[n - r]))); }
+ll nPr(ll n, ll r) { return mul(fact[n], inv(fact[n - r])); }
 int main() {
 
      ios::sync_with_stdio(0);

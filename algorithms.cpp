@@ -189,7 +189,7 @@ int main()
     //cout << it;
 
     //9.lower_bound
-    //Sort the array to make sure that lower_bound() and upper_bound() work.
+    //Sort!!!!!!!!! the array to make sure that lower_bound() and upper_bound() work.
     //sort(a.begin(),a.end());
     //vector<int>::iterator it;   OR auto it
     //it = lower_bound(a.begin(),a.end(),20); // explicitly saying iterator

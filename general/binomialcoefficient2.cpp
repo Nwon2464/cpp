@@ -39,8 +39,9 @@ int mul(int a, int b) { return (1LL * a * b) % MOD; }
 int sub(int a, int b) {int s = (a + MOD - b); if (s >= MOD) s -= MOD;return s;}
 // clang-format on
 
-const int N = 1000001;  // dont change N. This is max you can set to. if you
-                        // choose less, run time error.
+// const int N = 1000001;  // dont change N. This is max you can set to. if you
+// choose less, run time error.
+const int N = 1 << 20;
 ll fact_inverse[N + 1], factorial[N + 1];
 ll inverse[N + 1];
 
@@ -65,6 +66,8 @@ void inverse_factorial() {
 ll nCr(ll n, ll r) {
      return mul(factorial[n], mul(fact_inverse[r], fact_inverse[n - r]));
 }
+
+ll nPr(ll n, ll r) { return mul(factorial[n], fact_inverse[n - r]); }
 int main() {
      // this method computes binomial coefficient in O(1) time per query
      // because we precompute the inverses of all factorials in O(N log M)

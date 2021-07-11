@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/cf.dir/a.cpp.o CMakeFiles/cf.dir/b.cpp.o CMakeFiles/cf.dir/c.cpp.o -o cf 

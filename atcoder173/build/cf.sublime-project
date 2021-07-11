@@ -1,0 +1,47 @@
+{
+	"folders":
+	[
+		{
+			"path": "../"
+		}
+	],
+	"build_systems":
+	[
+		{
+			"name": "cf - all",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "all"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "cf - clean",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "clean"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "cf - rebuild_cache",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "rebuild_cache"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "cf - cf",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "cf"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "cf - cf/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "cf/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "cf - edit_cache",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "edit_cache"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		}
+	]
+}

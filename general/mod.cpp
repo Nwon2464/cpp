@@ -31,8 +31,8 @@ remainder may become negative
 */
 // ------------------------------------------------------------------------------
 
-int MOD = 1e9 + 7;
-
+const int MOD = 1e9 + 7;
+int print_mod(int a) { return (a % MOD + MOD) % MOD; }
 int mul(int a, int b){return (1LL * a * b) % MOD;}
 int add(int a, int b){int s = (a + b);if (s >= MOD)s -= MOD; return s;}
 int sub(int a, int b){int s = (a + MOD - b);if (s >= MOD)s -= MOD;return s;}
@@ -48,6 +48,7 @@ using u128 = __uint128_t;
 u64 binpower(u64 base, u64 e, u64 mod)
 {
     //integer range [2 <= N <= 2^63-1] can be AC
+    //                       = 9*10^18
     u64 result = 1;
     base %= mod;
     while (e) {

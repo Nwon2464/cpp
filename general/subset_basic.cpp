@@ -34,7 +34,7 @@ const uint64_t SEED = chrono::steady_clock::now().time_since_epoch().count() * (
 mt19937_64 rng(SEED);
 // clang-format on
 
-void solve() {}
+void solve() { }
 
 int main() {
      ios::sync_with_stdio(0);
@@ -42,7 +42,7 @@ int main() {
 
      // find all the subsets of the array
      // power set problem. time complexity O(2^n * n)
-     // variation of this problem is remove duplicate
+     // variation of this problem is to remove duplicate
      // https://leetcode.com/problems/subsets/
 
      // this would only work if constraint is n <= 20
@@ -51,11 +51,11 @@ int main() {
      // maximum possible time complexity is O(10^7) while constraints is n
      // <= 20.
 
-     vector<int> p = {1, 2, 3};
+     vector<int> p = { 1, 2, 3 };
      vector<vector<int>> ans;
-     for (ll msk = 0; msk < (1 << p.size()); ++msk) {  // O(2^n)
+     for (ll msk = 0; msk < (1 << p.size()); ++msk) { // O(2^n)
           vector<int> temp;
-          for (ll i = 0; i < (ll)p.size(); ++i) {  // O(n)
+          for (ll i = 0; i < (ll)p.size(); ++i) { // O(n)
                if (msk & (1 << i)) {
                     temp.push_back(p[i]);
                }
